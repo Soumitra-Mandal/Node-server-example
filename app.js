@@ -11,14 +11,13 @@ var usersRouter = require('./routes/users');
 var loginRouter = require('./routes/login');
 var logoutRouter = require('./routes/logout');
 
-
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-//middleware
+// middleware setup
 app.use(session({ secret: 'AB34FV12', resave: false, saveUninitialized: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(logger('dev'));
@@ -27,10 +26,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// routes setup
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/login',loginRouter);
-app.use('/logout',logoutRouter);
+app.use('/login', loginRouter);
+app.use('/logout', logoutRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -45,7 +45,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error', {title:"Error"});
+  res.render('error', { title: "Error" });
 });
 
 module.exports = app;

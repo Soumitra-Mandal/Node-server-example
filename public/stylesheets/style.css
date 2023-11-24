@@ -1,13 +1,20 @@
 body {
   padding: 0;
   margin: 0;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 16px "Arial", sans-serif;
+  background-color: #f4f4f4;
+}
+
+header {
+  background-color: #333;
+  color: white;
+  padding: 0;
+  text-align: center;
 }
 
 .navbar {
-  background-color:black;
+  background-color: #555;
   overflow: hidden;
-  width: 100%;
 }
 
 .navbar a {
@@ -25,6 +32,48 @@ body {
 }
 
 .navbar a:active {
-  background-color: #555;
+  background-color: #333;
   color: white;
+}
+
+.features {
+  margin: 20px;
+  color: #333;
+}
+
+.features h2 {
+  color: #555;
+  font-weight: bold;
+}
+
+.features ol {
+  list-style-type: decimal;
+  padding-left: 20px;
+  color: #777;
+}
+
+.features li {
+  margin-bottom: 10px;
+}
+
+.features p {
+  color: #555;
+  line-height: 1.5;
+}
+
+.features em {
+  font-style: italic;
+  text-decoration: underline;
+}
+
+.features strong {
+  font-weight: bold;
+}
+
+.features u {
+  text-decoration: underline;
+}
+
+.features s {
+  text-decoration: line-through;
 }

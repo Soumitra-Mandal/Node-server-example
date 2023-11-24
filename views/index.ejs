@@ -5,20 +5,37 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/stylesheets/style.css">
-  <title><%= title %></title>
+  <title>Node API</title>
 </head>
 
 <body>
-  <div class="navbar">
-    <a href="/">Home</a>
-    <% if(!isLoggedIn){ %>
-    <a href="/login">Login</a>
-    <% } else { %>
-    <a href="/logout">Logout</a>
-    <% } %>
-  </div>
-  <h1><%= title %></h1>
-  <p>Welcome to <%= title %></p>
+  <header>
+    <nav class="navbar">
+      <% if (!isLoggedIn) { %>
+        <a href="/login">Login</a>
+        <a href="/signup">Signup</a>
+      <% } else { %>
+        <a href="/logout">Logout</a>
+      <% } %>
+    </nav>
+  </header>
+
+  <section class="features">
+    <h2>Features:</h2>
+    <ol>
+      <li>API to send users</li>
+      <li><em>Login</em> and <em>Signup</em> authentication</li>
+      <li>Password hashing using bcrypt</li>
+      <li>DB used: <b>SQLite</b></li>
+      <li>Basic <b>CSS</b> styling</li>
+      <li>Basic routing</li>
+      <li><em>Data caching</em> for improved performance</li>
+      <li><em>Restricted access</em> for non-admin users</li>
+    </ol>
+
+    <p>This is a Node.js application that utilizes bcrypt for <em>secure password hashing</em>, caches request data to enhance performance, and restricts access for non-admin users.</p>
+  </section>
+
 </body>
 
 </html>

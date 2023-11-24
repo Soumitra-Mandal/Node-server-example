@@ -8,6 +8,9 @@ const cache = require("memory-cache");
 router.get('/', function (req, res, next) {
   // Check if the user is logged in
   if (req.session && req.session.isLoggedIn) {
+    if(!req.session.isAdmin) {
+      return res.send('<h2>User does not have admin rights</h2>')
+    }
     const key = req.originalUrl || req.url
     const cacheBody = cache.get(key);
     // Retrieve users from the database
@@ -31,7 +34,6 @@ router.get('/', function (req, res, next) {
         }
       });
     }
-
   } else {
     // User is not logged in, render the login page
     return res.render('login', { error: 'Please log in to access users' });
@@ -43,9 +45,7 @@ router.get('/:id', (req, res, next) => {
   if (req.session.isLoggedIn) {
     var id = req.params.id;
     const key = `/users/${id}`;
-
     const cacheBody = cache.get(key);
-
     if (cacheBody) {
       res.setHeader('X-Cache', 'HIT');
       return res.json(cacheBody);
@@ -54,10 +54,8 @@ router.get('/:id', (req, res, next) => {
         if (err) {
           return res.status(500).json({ error: err.message });
         }
-
         // Cache the result for future requests
         cache.put(key, data, 10 * 60 * 1000); // Cache for 10 minutes
-
         res.setHeader('X-Cache', 'MISS');
         return res.json(data);
       });

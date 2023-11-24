@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="/stylesheets/login.css">
+    <title>Signup</title>
+    <link rel="stylesheet" href="/stylesheets/signup.css">
 </head>
 
 <body>
@@ -13,19 +13,23 @@
         <a href="/">Home</a>
     </div>
     <div class="container">
-        <div class="login-container">
-            <h1>Login</h1>
+        <div class="signup-container">
+            <h1>signup</h1>
             <% if (typeof error !=='undefined' && error) { %>
                 <p style="color: red;">
                     <%= error %>
                 </p>
                 <% } %>
-                    <form action="/login" method="POST">
+                    <form action="/signup" method="POST">
                         <label for="username">Username:</label>
                         <input type="text" name="username" id="username" required>
                         <label for="password">Password:</label>
                         <input type="password" name="password" id="password" required>
-                        <button type="submit">Login</button>
+                        <div id="admin">
+                            <label for="isAdmin">Is Admin User:</label>
+                            <input type="checkbox" name="isAdmin" id="isAdmin">
+                        </div>
+                        <button type="submit">signup</button>
                     </form>
         </div>
     </div>

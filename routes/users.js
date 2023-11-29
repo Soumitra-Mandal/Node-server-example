@@ -16,7 +16,6 @@ router.get('/', function (req, res, next) {
     // Retrieve users from the database
     if (cacheBody) {
       res.setHeader('X-Cache', 'MISS');
-      console.log(res.getHeader('X-Cache'));
       return res.json(cacheBody);
     } else {
       db.all('SELECT * FROM users', (err, data) => {
@@ -27,7 +26,6 @@ router.get('/', function (req, res, next) {
           res.json = (body) => {
             cache.put(key, body, 10 * 60 * 1000);
             res.setHeader('X-Cache', 'HIT');
-            console.log(res.getHeader('X-Cache'));
             res.sendResponse(body);
           };
           return res.sendResponse(data);

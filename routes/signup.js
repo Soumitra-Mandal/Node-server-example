@@ -14,6 +14,11 @@ router.get('/', (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
     var username = req.body.username;
+    if (!isUsernameValid(username)) {
+        return res.render('signup', {
+            error: "Invalid username. Usernames can only contain alphanumeric characters, and the following special characters: . @ _ -"
+        });
+    }
     var password = req.body.password;
     var isAdmin = req.body.isAdmin; // Assuming isAdmin is a boolean
 
@@ -37,5 +42,10 @@ router.post('/', async (req, res, next) => {
         }
     );
 });
+
+function isUsernameValid(username) {
+    const validCharactersRegex = /^[a-zA-Z0-9.@_\-]+$/;
+    return validCharactersRegex.test(username);
+}
 
 module.exports = router;

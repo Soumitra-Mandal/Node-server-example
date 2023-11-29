@@ -29,7 +29,6 @@ router.post('/', async (req, res, next) => {
             req.session.username = user.username
             req.session.isAdmin = user.isAdmin
             req.session.id = user.id
-            console.log(user);
             if (user.isAdmin)
                 return res.redirect("/users");
             else return res.redirect(`/users/${user.id}`)
